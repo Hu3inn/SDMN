@@ -1,0 +1,6 @@
+first run create net
+second in the mininet CLI write "dpctl del-flows -O OpenFlow13"
+third in a different terminal run send_flows
+fourth run watcher
+work with it and get ping
+

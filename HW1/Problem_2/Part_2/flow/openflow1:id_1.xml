@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flow xmlns="urn:opendaylight:flow:inventory">
+    <barrier>false</barrier>
+    <cookie>8</cookie>
+    <id>1</id>
+    <instructions>
+        <instruction>
+            <order>0</order>
+            <apply-actions>
+                <action>
+                   <order>0</order>
+                   <output-action>
+                        <output-node-connector>1</output-node-connector>
+                    </output-action>
+                </action>
+            </apply-actions>
+        </instruction>
+    </instructions>
+    <cookie_mask>255</cookie_mask>
+    <installHw>false</installHw>
+    <priority>1</priority>
+    <strict>false</strict>
+    <table_id>0</table_id>
+    <flow-name>FooXf8</flow-name>
+    <match>
+        <ethernet-match>
+            <ethernet-type>
+                <type>2048</type>
+            </ethernet-type>
+            <ethernet-destination>
+                <address>00:00:00:00:00:03</address>
+            </ethernet-destination>
+        </ethernet-match>
+    </match>
+</flow>

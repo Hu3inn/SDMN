@@ -1,0 +1,4 @@
+first run create_net
+second run push flows in another terminal
+
+#there is problem with requests library in python2, so if for any reason it didnt work use push_flows_alt
