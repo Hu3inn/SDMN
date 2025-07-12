@@ -4,7 +4,7 @@ import sys
 import subprocess
 
 def usage():
-    print("Usage: ./container.py <hostname> [memory_limit_MB]")
+    print("Usage: ./container.py <hostname> <your_root_directory> [memory_limit_MB]")
     sys.exit(1)
 
 def setup_cgroup(mem_limit_mb):
@@ -19,11 +19,11 @@ def setup_cgroup(mem_limit_mb):
     with open(os.path.join(cgroup_path, "tasks"), "w") as f:
         f.write(str(os.getpid()))
 
-def run_container(hostname, mem_limit_mb=None):
+def run_container(hostname, root_dir, mem_limit_mb=None):
     if mem_limit_mb:
         setup_cgroup(mem_limit_mb)
 
-    new_root = os.path.abspath("ubuntu-rootfs")
+    new_root = os.path.abspath(root_dir)
 
     # Command to run in child namespace
     command = [
@@ -51,9 +51,10 @@ def run_container(hostname, mem_limit_mb=None):
     subprocess.run(command)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         usage()
 
     hostname = sys.argv[1]
-    mem_limit_mb = int(sys.argv[2]) if len(sys.argv) == 3 else None
-    run_container(hostname, mem_limit_mb)
+    root_dir = sys.argv[2]
+    mem_limit_mb = int(sys.argv[3]) if len(sys.argv) == 4 else None
+    run_container(hostname, root_dir, mem_limit_mb)

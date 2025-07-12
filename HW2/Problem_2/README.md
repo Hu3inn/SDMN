@@ -3,9 +3,9 @@
 ### 1- Create root fliesystem directory and then extract ubuntu 20.04(ubuntu-rootfs): 
 
 ```
-mkdir ubuntu-rootfs
+mkdir <root_directory_name> # I named it ubuntu-rootfs
 #not available in git repository, this directory include ubuntu 20.04 root filesystem, git doesn't scan them so I can't push them
-sudo sh -c 'docker export $(docker create ubuntu:20.04) | tar -C ubuntu-rootfs -xvf -'
+sudo sh -c 'docker export $(docker create ubuntu:20.04) | tar -C <root_directory_name> -xvf -' #
 ```
 
 It is worth mentionening that in this approach we get a very barebone, minimal ubuntu 20.04 image (Docker base layer), meaning that, theoratically, if you have ubuntu image (regardless how feature-rich it is, as long as it has the necessary root filesystems) can be extracted and put in this directory. But using Docker base layer image is a safe approach that involes 28 MB download and 75 MB storage when extracted.
@@ -23,8 +23,8 @@ sudo mount -t cgroup -o memory none /sys/fs/cgroup/memory
 chmod +x container.py
 #if it is not already executable
 
-sudo ./container.py myhostname 100
-# first argument is the name of the container, the second one is the amount of limited ram you desire in MB
+sudo ./container.py myhostname <root_directory_name> 100
+# first argument is the name of the container, the second one root filesystem directory that you made, the third is the amount of limited ram you desire in MB
 ```
 
 Now you can use commands like `ls /` or `ps fax`.
@@ -32,13 +32,13 @@ Now you can use commands like `ls /` or `ps fax`.
 Attention: the base layer image that docker provide doesn't come with iproute2, so in order to modify and mange network you need to do these steps to install iproute2:
 
 ```
-sudo chroot ubuntu-rootfs /bin/bash
+sudo chroot <root_directory_name> /bin/bash
 
 apt update
 apt install iproute2 -y
 exit
 
-sudo ./container.py myhostname 100
+sudo ./container.py myhostname <root_directory_name> 100
 #to rerun it so the new package get recognized
 ```
 
