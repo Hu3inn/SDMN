@@ -1,10 +1,10 @@
 ### How to run this container
 
-###1- Create root fliesystem directory and then extract ubuntu 20.04(ubuntu-rootfs): 
+### 1- Create root fliesystem directory and then extract ubuntu 20.04(ubuntu-rootfs): 
 
 ```
 mkdir ubuntu-rootfs
-#already made in the git repository
+#not available in git repository, this directory include ubuntu 20.04 root filesystem, git doesn't scan them so I can't push them
 sudo sh -c 'docker export $(docker create ubuntu:20.04) | tar -C ubuntu-rootfs -xvf -'
 ```
 

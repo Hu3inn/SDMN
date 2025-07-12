@@ -1,23 +1,23 @@
-###How to run Problem1
+### How to run Problem1
 
 
-###1-implement the topology -->> run:
+### 1-implement the topology -->> run:
 ```
 sudo ./create_topology
 #or
 sudo bash create_topology.sh
 ```
 
-###2-getting ping -->> run:
+### 2-getting ping -->> run:
 ```
 sudo ./ping_nodes.sh $options $options
 #or
 sudo bash ./ping_nodes.sh $options $options
 ```
-###$options=node1/node2/node3/node4/router/ip addresses
+$options=node1/node2/node3/node4/router/ip addresses
 
 
-###3-cleaning up these hosts bridges and links:
+### 3-cleaning up these hosts bridges and links:
 ```
 sudo ./cleanup.sh
 #or
